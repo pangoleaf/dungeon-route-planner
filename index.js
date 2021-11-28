@@ -14,5 +14,5 @@ if (params.has("from") && params.has("to")) {
     .findRoutes(+params.get("from"), +params.get("to"))
     .display()
     .replace("\n", "<br>");
-  page.textContent = result;
+  page.innerHTML = result;
 }
