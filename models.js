@@ -1,7 +1,7 @@
 export class RouteList extends Array{
   format () { 
     return this.map((r, i) => {
-      const header = `Option (${i+1})  ${r.summary()}`;
+      const header = (this.length > 1 ? `Option (${i+1}) ` : "") + r.summary();
 
       const portals = r.map(p =>
         p.activation === "Walking"
