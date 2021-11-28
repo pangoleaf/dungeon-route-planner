@@ -10,40 +10,40 @@ class Gate:
 
 
 @dataclass
-class Route:
+class Portal:
     id: int
     activation: str
     gates: list[Gate]
 
 
 @dataclass
-class RouteList:
-    routes_path: str = "./routes"
+class PortalList:
+    portals_path: str = "./portals"
 
-    def load_routes(self):
-        with open(self.routes_path + ".json", "r") as f:
+    def load_portals(self):
+        with open(self.portals_path + ".json", "r") as f:
             file_contents = f.read()
-        self.routes = jp.decode(file_contents) if file_contents else []
+        self.portals = jp.decode(file_contents) if file_contents else []
         return self
 
-    def save_routes(self, js=False):
+    def save_portals(self, js=False):
         ext = ".js" if js else ".json"
-        with open(self.routes_path + ext, "w") as f:
+        with open(self.portals_path + ext, "w") as f:
             if js:
                 f.write("export default ")
-            f.write(jp.encode(self.routes))  # , unpicklable=False
+            f.write(jp.encode(self.portals, unpicklable=False))  # , unpicklable=False
         return self
 
-    def new_route_id(self, routes):
+    def new_route_id(self, portals):
         try:
-            return max([r.id for r in self.routes]) + 1
+            return max([r.id for r in self.portals]) + 1
         except ValueError:
             return 1
 
     def add_route(self, activation, g1lvl, g1loc, g1dsc, g2lvl, g2loc, g2dsc):
-        self.routes.append(
-            Route(
-                self.new_route_id(self.routes),
+        self.portals.append(
+            Portal(
+                self.new_route_id(self.portals),
                 activation,
                 [
                     Gate(g1lvl, g1loc, g1dsc),
@@ -54,9 +54,9 @@ class RouteList:
         return self
 
 
-routes = (
-    RouteList()
-    .load_routes()
+portals = (
+    PortalList()
+    .load_portals()
     # .add_route(
     #     "Saying \"Axalan\"",
     #     10,
@@ -66,6 +66,20 @@ routes = (
     #     "The Maze (working title)",
     #     True
     # )
-    .save_routes()
-    .save_routes(js=True)
+    .save_portals()
+    .save_portals(js=True)
 )
+
+# # Adding walking portals
+# portals = PortalList().load_portals()
+# for i in range(1, 13):
+#     portals.add_route(
+#         "Walking",
+#         i,
+#         "",
+#         True,
+#         i+1,
+#         "",
+#         True
+#     )
+# portals.save_portals().save_portals(js=True)

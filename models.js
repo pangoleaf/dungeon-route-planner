@@ -4,7 +4,9 @@ export class RouteList extends Array{
       const header = `Option (${i+1})  ${r.summary()}`;
 
       const portals = r.map(p =>
-          `  ${p.from.level} -> ${p.to.level}: Activated by ${p.activation}: ` +
+        p.activation === "Walking"
+        ? `  ${p.from.level} -> ${p.to.level}: Walking`
+        : `  ${p.from.level} -> ${p.to.level}: Activated by ${p.activation}: ` +
           `([${p.from.location}] -> ` +
           `[${p.to.location}])`
       )
