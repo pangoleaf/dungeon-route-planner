@@ -6,5 +6,7 @@ const page = document.querySelector(".page")
 const params = new URLSearchParams(window.location.search);
 const planner = new RoutePlanner(importedPortals);
 
-const result = planner.findRoutes(params.get("from"), params.get("to")).display();
-page.textContent = result;
+if (params.has("from") && params.has("to")) {
+  const result = planner.findRoutes(+params.get("from"), +params.get("to")).display();
+  page.textContent = result;
+}
