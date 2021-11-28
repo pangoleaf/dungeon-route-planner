@@ -5,14 +5,11 @@ const page = document.querySelector(".page")
 
 const params = new URLSearchParams(window.location.search);
 
-console.log(+params.get("from"));
-console.log(+params.get("to"));
-
 if (params.has("from") && params.has("to")) {
   const planner = new RoutePlanner(importedPortals);
   const result = planner
     .findRoutes(+params.get("from"), +params.get("to"))
     .display()
-    .replace("\n", "<br>");
+    .replaceAll("\n", "<br>");
   page.innerHTML = result;
 }

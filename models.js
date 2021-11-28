@@ -1,4 +1,4 @@
-export class RouteList extends Array{
+export class RouteList extends Array {
   format () { 
     return this.map((r, i) => {
       const header = (this.length > 1 ? `Option (${i+1}) ` : "") + r.summary();
@@ -10,7 +10,7 @@ export class RouteList extends Array{
           `([${p.from.location}] -> ` +
           `[${p.to.location}])`
       )
-
+      
       return [header, ...portals].join("\n");
     }).join("\n\n");
   }
