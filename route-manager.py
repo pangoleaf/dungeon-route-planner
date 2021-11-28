@@ -40,14 +40,14 @@ class RouteList:
         except ValueError:
             return 1
 
-    def add_route(self, activation, g1_lvl, g1_loc, g2_lvl, g2_loc, override=False):
+    def add_route(self, activation, g1lvl, g1loc, g1dsc, g2lvl, g2loc, g2dsc):
         self.routes.append(
             Route(
                 self.new_route_id(self.routes),
                 activation,
                 [
-                    Gate(g1_lvl, g1_loc),
-                    Gate(g2_lvl, g2_loc),
+                    Gate(g1lvl, g1loc, g1dsc),
+                    Gate(g2lvl, g2loc, g2dsc),
                 ],
             )
         )
@@ -61,8 +61,10 @@ routes = (
     #     "Saying \"Axalan\"",
     #     10,
     #     "Muiral's Gauntlet - Skull mirror room off mezzanine floor",
+    #     True,
     #     12,
-    #     "The Maze (working title)"
+    #     "The Maze (working title)",
+    #     True
     # )
     .save_routes()
     .save_routes(js=True)

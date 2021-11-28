@@ -1,0 +1,19 @@
+{
+    "name": "dungeon-route-planner",
+    "version": "0.0.1",
+    "description": "Comparison of Node.js template languages.",
+    "keywords": ["template", "benchmark"],
+    "repository": "https://github.com/pangoleaf/dungeon-route-planner",
+    "homepage": "http://pangoleaf.github.io/",
+    "author": "Matt Scott <mascot26@tuta.io>",
+    "type": "module",
+    "dependencies": {},
+    "main": "route-planner.js",
+    "engines": {
+        "node": ">= 0.4.1"
+    },
+    "scripts": {
+        "prepublish": "npm prune",
+        "test": "make lint && make test"
+    }
+}
