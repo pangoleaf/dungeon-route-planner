@@ -13,9 +13,9 @@ class RoutePlanner {
         new Gate(r.gates[1]),
       ))
     );
-    this.portals.forEach(dir);
   }
 
+  // list every portal with a gate on given level
   allDests (level, avoid, ignore=[]) {
     return this.portals
       .filter(p => p.levels().includes(level))
@@ -24,55 +24,38 @@ class RoutePlanner {
       .filter(p => !ignore.includes(p.to.level));
   };
 
-  buildRoutes (dest, routes, avoid, walking, depth=1) {
-    if (depth >= Math.max(this.portals.allLevels())) {
-      console.log("No current route known, not even walking apparently");
-      return new RouteList();
-    }
-
+  // recursively build RouteList of Rutes, when 1+ reaches destination returns only those routes
+  buildRoutes (dest, routes, avoid, depth=1) {
+    if (depth >= Math.max(this.portals.allLevels())) 
+      return new RouteList().withComment("No current route known, not even walking apparently");
+    
     const winners = routes.filter(r => r.latestTo() === dest);
+
     return winners.length > 0
       ? winners
       : this.buildRoutes(
         dest,
-        routes.flatMap(r => this.allDests(r.latestTo(), avoid, r.traversed()).toRouteList(r)),
+        routes.flatMap(r => this.allDests(r.latestTo(), avoid, r.traversed()).toRoutes(r)),
         avoid,
-        walking,
         depth+1
       );
   }
 
+  // Check route is possible and kick off buildRoutes
   findRoutes (start, dest, avoid=[]) {
-    if (!this.portals.allLevels().includes(dest)) {
-      console.log(`No portals to ${dest} have been found yet!`);
-      return new RouteList();
-    }
-
-    const walking = Math.abs(dest - start);
+    if (!this.portals.allLevels().includes(dest)) 
+      return new RouteList().withComment(`No portals to ${dest} have been found yet!`);
 
     return this.buildRoutes(
       dest,
-      this.allDests(start, avoid).toRouteList(),
-      avoid,
-      walking
+      this.allDests(start, avoid).toRoutes(),
+      avoid
     );
   };
 }
 
 const planner = new RoutePlanner(importedPortals);
 
-// dir(planner.portals);
-
-// const avoid = [[11,6], [10,6]];
-// planner.findRoutes(7, 5, avoid).print();
-
-
-// planner.findRoutes(8, 3, [[6, 3], [5, 3]]).print();
-
 const avoid = [[11,6]]
 planner.findRoutes(7, 5, avoid).print();
 
-
-// const testGate = { level: 11, location: '', discovered: true };
-// const gateObj = new Gate({ ...testGate });
-// dir(gateObj);

@@ -14,8 +14,15 @@ export class RouteList extends Array{
       return [header, ...portals].join("\n");
     }).join("\n\n");
   }
+  withComment(comment) {
+    this.comment = comment;
+    return this;
+  }
+  display () {
+    return this.length > 0 ? this.format() : this.comment;
+  }
   print () {
-    if (this.length > 0) console.log(this.format());
+    console.log(this.display());
   }
 }
 
@@ -29,7 +36,7 @@ export class PortalList extends Array {
     return this.flatMap(p => p.gates);
   }
 
-  toRouteList (basedOnRoute=[]) {
+  toRoutes (basedOnRoute=[]) {
     return new RouteList(...this.map(p => new Route(...basedOnRoute, p)));
   }
 }
