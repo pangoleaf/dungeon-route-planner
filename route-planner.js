@@ -1,10 +1,7 @@
 import { PortalList, PortalUnrouted, Gate, RouteList } from './models.js';
-import { dir, arrInclArr, notAvoided} from './utils.js';
+import { notAvoided } from './utils.js';
 
-import importedPortals from './portals.js';
-
-class RoutePlanner {
-
+export class RoutePlanner {
   constructor (portalData) {
     this.portals = new PortalList(
       ...portalData.map(r => new PortalUnrouted(
@@ -53,9 +50,3 @@ class RoutePlanner {
     );
   };
 }
-
-const planner = new RoutePlanner(importedPortals);
-
-const avoid = [[11,6]]
-planner.findRoutes(7, 5, avoid).print();
-
