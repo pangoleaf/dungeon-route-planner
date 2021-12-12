@@ -1,5 +1,5 @@
 # dungeon-route-planner
-For finding the quickest route between levels of Halaster's dungeon, based on the portals we've discovered so far.
+For finding the quickest route between levels of Halaster's dungeon, based on the portals discovered so far.
 
 Hosted at https://pangoleaf.github.io/dungeon-route-planner
 For now simply query via URL parameters e.g. dungeon-route-planner/?from=8&to=3
