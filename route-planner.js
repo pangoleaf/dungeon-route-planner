@@ -21,7 +21,7 @@ export class RoutePlanner {
       .filter(p => !ignore.includes(p.to.level));
   };
 
-  // recursively build RouteList of Rutes, when 1+ reaches destination returns only those routes
+  // recursively build RouteList of Routes, when 1+ reaches destination returns only those routes
   buildRoutes (dest, routes, avoid, depth=1) {
     if (depth >= Math.max(this.portals.allLevels())) 
       return new RouteList().withComment("No current route known, not even walking apparently");
