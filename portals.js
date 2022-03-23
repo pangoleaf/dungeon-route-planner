@@ -148,7 +148,7 @@ export default [
         location: 'Temple of Dumathoin - Double-umberhulk southern room',
         discovered: true,
       },
-      { level: 12, location: 'The Maze', discovered: false },
+      { level: 12, location: 'The Maze - Near entrance', discovered: true },
     ],
   },
   {
