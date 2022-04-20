@@ -244,7 +244,7 @@ export default [
         location: "Muiral's Gauntlet - Skull mirror room off mezzanine floor",
         discovered: true,
       },
-      { level: 12, location: 'The Maze (working title)', discovered: false },
+      { level: 12, location: 'The Maze (ex Lolth\'s Fortress)', discovered: true },
     ],
   },
   {
