@@ -343,4 +343,20 @@ export default [
       { level: 13, location: '', discovered: true },
     ],
   },
+  {
+    id: 35,
+    activation: "Blood X on forehead",
+    gates: [
+      {
+          level: 12,
+          location: "Baphomet Room",
+          discovered: true,
+      },
+      {
+          level: 19,
+          location: "Resting place of the scavenger/caverns",
+          discovered: false,
+      }
+    ]
+  },
 ];
