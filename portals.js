@@ -359,4 +359,20 @@ export default [
       }
     ]
   },
+  {
+    id: 36,
+    activation: "Holding hands",
+    gates: [
+      {
+          level: 14,
+          location: "Gross Room, next to Alussiarr's hammocks",
+          discovered: true,
+      },
+      {
+          level: 17,
+          location: "SeaDeeps",
+          discovered: false,
+      }
+    ]
+  },
 ];
